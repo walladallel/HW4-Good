@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Info</title>
+	<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/main.css') }}">
+</head>
+<body>
+
+    {% if message %}
+    <h2 align="center">Click the button to sort the table alphabetically, by name:</h2>
+<p align="center"><button onclick="sortTable()">Sort</button></p>
+
+        <table id="myTable" align="center">
+            <tr><td>Firstname</td><td>Lastname</td><td>Birthday</td><td>Id #</td><td>Smoking</td></tr>
+           
+            <tr><td>{{fname1}}</td><td>{{lname1}}</td><td>{{bday1}}</td><td>{{id1}}</td><td>{{Smoking1}}</td></tr>
+            <tr><td>{{fname2}}</td><td>{{lname2}}</td><td>{{bday2}}</td><td>{{id2}}</td><td>{{Smoking2}}</td></tr>
+            <tr><td>{{fname3}}</td><td>{{lname3}}</td><td>{{bday3}}</td><td>{{id3}}</td><td>{{Smoking3}}</td></tr>
+        
+          </table>
+          <script> //Sorting Script
+            function sortTable() {
+              var table, rows, switching, i, x, y, shouldSwitch;
+              table = document.getElementById("myTable");
+              switching = true
+              while (switching) { 
+                switching = false;
+                rows = table.rows;
+                for (i = 1; i < (rows.length - 1); i++) { 
+                  shouldSwitch = false;
+                  x = rows[i].getElementsByTagName("TD")[0];
+                  y = rows[i + 1].getElementsByTagName("TD")[0];
+                  if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                    shouldSwitch = true;
+                    break;
+                  }
+                }
+                if (shouldSwitch) {
+                  rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                  switching = true;
+                }
+              }
+            }
+            </script>
+          
+          {% else %}
+          <h2 align="center">Enter personal details:</h2>
+          <Table align="center">
+            <form action="" method="post">
+                <tr>
+              <p>
+                      <td><label for="Firstname">Firstname: </label></td>
+                        <td><input type="text" name="fname1" value="{{fname1}}" placeholder="First Name 1:"></td>
+                        <td><input type="text" name="fname2" value="{{fname2}}"placeholder="First Name 2:"></td>
+                        <td><input type="text" name="fname3" value="{{fname3}}"placeholder="First Name 3:"></td>
+                      </p>
+                    </tr>
+                    <tr>
+                      <p>
+                        <td><label for="Lastname">Last Name: </label></td>
+                        <td><input type="text" name="lname1" value="{{lname1}}" placeholder="Last Name 1:"></td>
+                          <td><input type="text" name="lname2" value="{{lname2}}"placeholder="Last Name 2:"></td>
+                          <td><input type="text" name="lname3" value="{{lname3}}"placeholder="Last Name 3:"></td>
+                      </p>
+                    </tr>
+                    <tr>
+                      <p>
+          
+                          <td><label for="Id Number">ID Number :</label>
+                            <td> <input type="number" name="id1" id="id1"  value="{{id1}}"placeholder="ID Number 1 :"></td>
+                              <td><input type="number" name="id2" id="id2"  value="{{id2}}"placeholder="ID Number 2 :"></td>
+                                <td> <input type="number" name="id3" id="id3"  value="{{id3}}"placeholder="ID Number 3 :"></td>
+                      </td>
+                    </p>
+                  </tr>
+                  <tr>
+                    <p>
+                      <td><label for="Birthday">Birthday: </label></td>
+            <td><input type="date" name="bday1" id="bday1" value="{{bday1}}" placeholder="Birthday 1: "></td>
+            <td><input type="date" name="bday2" id="bday2" value="{{bday2}}" placeholder="Birthday 2: "></td>
+            <td><input type="date" name="bday3" id="bday3" value="{{bday3}}" placeholder="Birthday 2: "></td>
+          </p>
+          
+                  <tr>
+                    <p>
+                      <td>
+                    <label for="Smoking">Do You Smoke?:</label>
+                    <td>
+                    <select id="Smoking1" name="Smoking1">
+                        <option value=true>Yes</option>
+                        <option value=false>No</option>
+                    </select>
+                    <td>
+                      <select id="Smoking2" name="Smoking2">
+                          <option value=true>Yes</option>
+                          <option value=false>No</option>
+                      </select>
+                      <td>
+                        <select id="Smoking3" name="Smoking3">
+                            <option value=true>Yes</option>
+                            <option value=false>No</option>
+                        </select>
+                    
+                  </td>
+                </p>
+              </tr>
+              <tr>
+                <p>
+                  <td colspan="4" align="center">
+                    <input type="submit" value="Submit">
+                  </td>
+                </p>
+              </tr>
+
+                      </form>
+                    </Table>
+                    <div></div>{% endif %}
+                  </body>
+                  </html>
