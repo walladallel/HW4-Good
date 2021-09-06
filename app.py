@@ -4,8 +4,6 @@ from flask import Flask, request, render_template
 import datetime
 import pprint
 import json
-
-
   
 # Flask constructor
 app = Flask(__name__)   
